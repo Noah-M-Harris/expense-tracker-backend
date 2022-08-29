@@ -25,6 +25,10 @@ app.use('/v1/users', userRouter)
 //app.use('/v1/income', incomeRouter)
 //app.use('/v1/expenses', expensesRouter)
 
+app.get('/', (req, res) => {
+    res.json({message: 'Hello new user'})
+})
+
 // Error Handlers
 app.use(notFound)
 app.use(errorHandler)
