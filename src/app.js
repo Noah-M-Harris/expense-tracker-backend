@@ -21,7 +21,7 @@ app.use(express.json())
 const userRouter = require('./routes/userRoutes')
 
 // Routers
-app.use('', userRouter)
+app.use('/v1/users', userRouter)
 //app.use('/v1/income', incomeRouter)
 //app.use('/v1/expenses', expensesRouter)
 
