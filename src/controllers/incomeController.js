@@ -24,6 +24,39 @@ const createIncome = asyncHandler (async (req, res) => {
     }
 })
 
+
+// @desc    Get all income
+// @route   GET /api/income
+// @access  Private
+const fetchAllIncome = asyncHandler (async (req, res) => {
+    try {
+        // Recieve back all instances of income
+        const income = await Income.find()
+        res.json(income)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
+
+// @desc    Get single income
+// @route   GET /api/income
+// @access  Private
+const fetchIncome = asyncHandler (async (req, res) => {
+    // recieving id from the params
+    const {id} = req?.params
+    try {
+        // Recieve an instance of income by id
+        const income = await Income.findById(id)
+        res.json(income)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
 module.exports = {
     createIncome,
+    fetchAllIncome,
+    fetchIncome
+
 }

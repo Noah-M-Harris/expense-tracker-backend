@@ -4,12 +4,15 @@ const router = express.Router()
 
 
 const {
-    createIncome
+    createIncome,
+    fetchAllIncome,
+    fetchIncome
 } = require('../controllers/incomeController')
 
 
 router.post('/', createIncome)
-
+router.get('/', fetchAllIncome)
+router.get('/:id', fetchIncome)
 
 
 
