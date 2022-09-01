@@ -19,15 +19,18 @@ app.use(express.urlencoded( {extended: false}))
 
 // Load Routers
 const userRouter = require('./routes/userRoutes')
+const incomeRouter = require('./routes/incomeRoutes')
 
-// Routers
-app.use('/v1/users', userRouter)
-//app.use('/v1/income', incomeRouter)
-//app.use('/v1/expenses', expensesRouter)
 
 app.get('/', (req, res) => {
     res.json({message: 'Hello new user'})
 })
+
+// Routers
+app.use('/v1/users', userRouter)
+app.use('/v1/income', incomeRouter)
+//app.use('/v1/expenses', expensesRouter)
+
 
 // Error Handlers
 app.use(notFound)
