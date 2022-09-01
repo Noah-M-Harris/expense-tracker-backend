@@ -5,11 +5,13 @@ const router = express.Router()
 
 const {
     registerUser,
-    fetchUsers
+    fetchUsers,
+    loginUser
 } = require('../controllers/userController')
 
 
 router.post('/', registerUser)
+router.post('/', loginUser)
 router.get('/fetch', fetchUsers)
 
 
