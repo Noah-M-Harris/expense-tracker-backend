@@ -54,9 +54,51 @@ const fetchIncome = asyncHandler (async (req, res) => {
     }
 })
 
+
+// @desc    Update Income Report
+// @route   PUT /api/income
+// @access  Private
+const updateIncome = asyncHandler( async (req, res) => {
+    // Need to grab id of particular income report we would like to update
+    const {id} = req?.params
+
+    // Different properties we may update
+    const {title, amount, description} = req.body
+
+    try {
+        // Grabbing particular income report, refrencing which fields may be updated
+        const income = await Income.findByIdAndUpdate(id, {
+            title,
+            description,
+            amount
+        },
+        {new: true})
+    } catch (error) {
+        
+    }
+})
+
+
+// @desc    Delete Income Report
+// @route   DELETE /api/income
+// @access  Private
+const deleteIncome = asyncHandler (async (req, res) => {
+    // recieving id from the params
+    const {id} = req?.params
+    try {
+        // Recieve an instance of income by id
+        const income = await Income.findByIdAndDelete(id)
+        res.json(income)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
 module.exports = {
     createIncome,
     fetchAllIncome,
-    fetchIncome
+    fetchIncome,
+    updateIncome,
+    deleteIncome
 
 }

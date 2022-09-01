@@ -28,4 +28,4 @@ const incomeSchema = mongoose.Schema({
     timestamps: true
 })
 
-module.epxorts = mongoose.model('Income', incomeSchema)
+module.exports = mongoose.model('Income', incomeSchema)
