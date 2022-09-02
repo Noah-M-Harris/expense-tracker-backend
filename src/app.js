@@ -20,6 +20,7 @@ app.use(express.urlencoded( {extended: false}))
 // Load Routers
 const userRouter = require('./routes/userRoutes')
 const incomeRouter = require('./routes/incomeRoutes')
+const expenseRouter = require('./routes/expenseRoutes')
 
 
 app.get('/', (req, res) => {
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
 // Routers
 app.use('/v1/users', userRouter)
 app.use('/v1/income', incomeRouter)
-//app.use('/v1/expenses', expensesRouter)
+app.use('/v1/expenses', expenseRouter)
 
 
 // Error Handlers
