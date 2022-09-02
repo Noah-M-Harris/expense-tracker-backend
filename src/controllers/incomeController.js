@@ -25,13 +25,15 @@ const createIncome = asyncHandler (async (req, res) => {
 })
 
 
-// @desc    Get all income
+// @desc    Get all income reports
 // @route   GET /api/income
 // @access  Private
 const fetchAllIncome = asyncHandler (async (req, res) => {
+    // query string destructuring
+    const {page} = req.query
     try {
-        // Recieve back all instances of income
-        const income = await Income.find()
+        // Recieve back all instances of income: Pagination only showing 10 results per page
+        const income = await Income.paginate({}, {limit: 10, page: Number(page)})
         res.json(income)
     } catch (error) {
         res.json(error)
