@@ -11,12 +11,14 @@ const {
     deleteExpense
 } = require('../controllers/expenseController')
 
+// Middleware 
+const { authMiddleware } = require('../middleware/auth')
 
-router.post('/', createExpense)
-router.get('/', fetchAllExpense)
-router.get('/:id', fetchExpense)
-router.put('/:id', updateExpense)
-router.delete('/:id', deleteExpense)
+router.post('/', authMiddleware, createExpense)
+router.get('/', authMiddleware, fetchAllExpense)
+router.get('/:id', authMiddleware, fetchExpense)
+router.put('/:id', authMiddleware, updateExpense)
+router.delete('/:id', authMiddleware, deleteExpense)
 
 
 

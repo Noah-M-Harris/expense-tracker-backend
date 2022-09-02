@@ -12,11 +12,15 @@ const {
 } = require('../controllers/incomeController')
 
 
-router.post('/', createIncome)
-router.get('/', fetchAllIncome)
-router.get('/:id', fetchIncome)
-router.put('/:id', updateIncome)
-router.delete('/:id', deleteIncome)
+// Middleware 
+const { authMiddleware } = require('../middleware/auth')
+
+
+router.post('/', authMiddleware, createIncome)
+router.get('/', authMiddleware, fetchAllIncome)
+router.get('/:id', authMiddleware, fetchIncome)
+router.put('/:id', authMiddleware, updateIncome)
+router.delete('/:id', authMiddleware, deleteIncome)
 
 
 
