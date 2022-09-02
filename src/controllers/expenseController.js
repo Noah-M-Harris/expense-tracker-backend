@@ -29,9 +29,11 @@ const createExpense = asyncHandler (async (req, res) => {
 // @route   GET /api/expesne
 // @access  Private
 const fetchAllExpense = asyncHandler (async (req, res) => {
+    // query string destructuring
+    const {page} = req.query
     try {
-        // Recieve back all instances of epxense
-        const expense = await Expense.find()
+        // Recieve back all instances of expense: Pagination only showing 10 results per page
+        const expense = await Expense.paginate({}, {limit: 10, page: Number(page)})
         res.json(expense)
     } catch (error) {
         res.json(error)
