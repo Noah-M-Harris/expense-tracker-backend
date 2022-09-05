@@ -9,6 +9,6 @@ const generateToken = id => {
     })
 }
 
-module.epxorts = {
+module.exports = {
     generateToken
 }

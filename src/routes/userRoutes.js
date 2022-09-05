@@ -11,7 +11,7 @@ const {
 
 
 router.post('/', registerUser)
-router.post('/', loginUser)
+router.post('/login', loginUser)
 router.get('/fetch', fetchUsers)
 
 

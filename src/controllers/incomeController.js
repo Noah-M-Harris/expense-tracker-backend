@@ -33,7 +33,8 @@ const fetchAllIncome = asyncHandler (async (req, res) => {
     const {page} = req.query
     try {
         // Recieve back all instances of income: Pagination only showing 10 results per page
-        const income = await Income.paginate({}, {limit: 10, page: Number(page)})
+        const income = await Income.paginate({}, {limit: 10, page: Number(page),
+            populate: 'user'}) // refrencing field named user in our model
         res.json(income)
     } catch (error) {
         res.json(error)
