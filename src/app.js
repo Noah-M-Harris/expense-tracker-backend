@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const dotenv = require('dotenv')
 dotenv.config()
 const connectDB = require('./config/connectDB')
@@ -15,6 +16,7 @@ const app = express()
 // Middleware
 app.use(express.json())
 app.use(express.urlencoded( {extended: false}))
+app.use(cors())
 
 
 // Load Routers
