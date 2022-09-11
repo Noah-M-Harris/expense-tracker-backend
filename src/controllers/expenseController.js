@@ -7,14 +7,15 @@ const asyncHandler = require('express-async-handler')
 // @access  Private
 const createExpense = asyncHandler (async (req, res) => {
     // what we are receieving from frontend
-    const {title, amount, description, user} = req.body
+    const {title, amount, description} = req.body
     try {
         // create an instance of epxense
         const epxense = await Expense.create({
             title,
             amount,
             description,
-            user
+            // Recieve user from middleware we have access to since it is protected by middleware
+            user: req?.user?._id
         })   
         
         // Send back that epxense instance
