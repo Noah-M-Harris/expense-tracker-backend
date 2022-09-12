@@ -23,16 +23,18 @@ app.use(cors())
 const userRouter = require('./routes/userRoutes')
 const incomeRouter = require('./routes/incomeRoutes')
 const expenseRouter = require('./routes/expenseRoutes')
+const accountRouter = require('./routes/accountStatRoutes')
 
 
 app.get('/', (req, res) => {
-    res.json({message: 'Hello new user'})
+    res.json({message: 'Expense Tracker'})
 })
 
 // Routers
 app.use('/v1/users', userRouter)
 app.use('/v1/income', incomeRouter)
 app.use('/v1/expenses', expenseRouter)
+app.use('/v1/account', accountRouter)
 
 
 // Error Handlers

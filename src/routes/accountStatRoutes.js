@@ -11,3 +11,5 @@ const {
 const { authMiddleware } = require('../middleware/auth')
 
 router.get('/account-statistics', authMiddleware, accountStats)
+
+module.exports = router
