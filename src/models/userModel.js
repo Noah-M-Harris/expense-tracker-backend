@@ -26,7 +26,29 @@ const userSchema = mongoose.Schema({
     },
 },
 {
+    toObject: {
+        virtuals: true
+    },
+    toJSON: {
+        virtuals: true
+    },
     timestamps: true
+})
+
+
+// Mongoose Virtual Property: Fetching all Expenses made by particular user
+userSchema.virtual = ('expenses', {
+    ref: 'Expense', // Name of model we want to refrence
+    foreignField: 'user', // refers to how we refrenced userModel in Expense Model
+    localField: '_id' // refers to how we identify/refrence a particular user 
+})
+
+
+// Mongoose Virtual Property: Fetching all Income reports made by particular user
+userSchema.virtual = ('income', {
+    ref: 'Income', // Name of model we want to refrence
+    foreignField: 'user', // refers to how we refrenced userModel in Income Model
+    localField: '_id' // refers to how we identify/refrence a particular user 
 })
 
 // Hashing and salting password

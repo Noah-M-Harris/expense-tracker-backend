@@ -11,12 +11,14 @@ const {
     updateUserProfile
 } = require('../controllers/userController')
 
+// Middleware 
+const { authMiddleware } = require('../middleware/auth')
 
 router.post('/', registerUser)
 router.post('/login', loginUser)
-router.get('/fetch', fetchUsers)
-router.get('/profile', userProfile)
-router.patch('/update', updateUserProfile)
+router.get('/fetch', authMiddleware, fetchUsers)
+router.get('/profile', authMiddleware, userProfile)
+router.patch('/update', authMiddleware, updateUserProfile)
 
 
 
