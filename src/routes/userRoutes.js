@@ -6,13 +6,17 @@ const router = express.Router()
 const {
     registerUser,
     fetchUsers,
-    loginUser
+    loginUser,
+    userProfile,
+    updateUserProfile
 } = require('../controllers/userController')
 
 
 router.post('/', registerUser)
 router.post('/login', loginUser)
 router.get('/fetch', fetchUsers)
+router.get('/profile', userProfile)
+router.patch('/update', updateUserProfile)
 
 
 

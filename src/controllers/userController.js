@@ -82,8 +82,45 @@ const loginUser = asyncHandler(async (req, res) => {
 
 })
 
+
+// @desc    User Profile
+// @route   GET /api/users
+// @access  Private
+const userProfile = asyncHandler( async(req, res) => {
+    try {
+       // Grab user through our protected middleware
+    const profile = await User.findById(req?.user?._id) 
+    res.json(profile)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
+
+// @desc    Update User Profile
+// @route   PATCH /api/users
+// @access  Private
+const updateUserProfile = asyncHandler( async(req, res) => {
+    try {
+       // Grab user through our protected middleware, updating possible fields
+    const profile = await User.findByIdAndUpdate(req?.user?._id, {
+        firstName: req?.body?.firstName,
+        lastName: req?.body?.lastName,
+        email: rewq?.body?.email
+    }, {
+        new: true,
+        runValidators: true
+    }) 
+    res.json(profile)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
 module.exports = {
     registerUser,
     fetchUsers,
     loginUser,
+    userProfile,
+    updateUserProfile
 }
