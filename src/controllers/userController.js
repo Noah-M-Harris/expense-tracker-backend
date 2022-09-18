@@ -98,7 +98,7 @@ const userProfile = asyncHandler( async(req, res) => {
 
 
 // @desc    Update User Profile
-// @route   PATCH /api/users
+// @route   PUT /api/users
 // @access  Private
 const updateUserProfile = asyncHandler( async(req, res) => {
     try {
