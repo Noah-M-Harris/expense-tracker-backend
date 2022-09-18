@@ -33,7 +33,6 @@ const incomeSchema = mongoose.Schema({
     toObject: {
         virtuals: true
     },
-    timestamps: true
 })
 
 // Pagination
