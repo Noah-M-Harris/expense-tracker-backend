@@ -87,9 +87,10 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users
 // @access  Private
 const userProfile = asyncHandler( async(req, res) => {
+    const {_id} = req?.user
     try {
        // Grab user through our protected middleware & get user's expenses & income reports
-    const profile = await User.findById(req?.user?._id).populate(['expenses', 'income'])
+    const profile = await User.findById(_id).populate(['expenseInfo', 'incomeInfo'])
     res.json(profile)
     } catch (error) {
         res.json(error)
@@ -101,9 +102,10 @@ const userProfile = asyncHandler( async(req, res) => {
 // @route   PUT /api/users
 // @access  Private
 const updateUserProfile = asyncHandler( async(req, res) => {
+    const {_id} = req.user
     try {
        // Grab user through our protected middleware, updating possible fields
-    const profile = await User.findByIdAndUpdate(req?.user?._id, {
+    const profile = await User.findByIdAndUpdate(_id, {
         firstName: req?.body?.firstName,
         lastName: req?.body?.lastName,
         email: req?.body?.email

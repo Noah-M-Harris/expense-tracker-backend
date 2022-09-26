@@ -26,30 +26,28 @@ const userSchema = mongoose.Schema({
     },
 },
 {
-    toObject: {
-        virtuals: true
-    },
-    toJSON: {
-        virtuals: true
-    },
+    toObject: {virtuals: true},
+    toJSON: {virtuals: true},
     timestamps: true
 })
 
 
 // Mongoose Virtual Property: Fetching all Expenses made by particular user
-userSchema.virtual = ('expenses', {
-    ref: 'Expense', // Name of model we want to refrence
-    foreignField: 'user', // refers to how we refrenced userModel in Expense Model
-    localField: '_id' // refers to how we identify/refrence a particular user 
+userSchema.virtual('expenseInfo', {
+    ref: 'Expense',
+    localField: '_id',
+    foreignField: 'user'
 })
+
 
 
 // Mongoose Virtual Property: Fetching all Income reports made by particular user
-userSchema.virtual = ('income', {
-    ref: 'Income', // Name of model we want to refrence
-    foreignField: 'user', // refers to how we refrenced userModel in Income Model
-    localField: '_id' // refers to how we identify/refrence a particular user 
+userSchema.virtual('incomeInfo', {
+    ref: 'Income',
+    localField: '_id',
+    foreignField: 'user'
 })
+
 
 // Hashing and salting password
 userSchema.pre('save', async function (next){
@@ -69,6 +67,6 @@ userSchema.methods.isPasswordMatch = async function(userPassword) {
     return await bcrypt.compare(userPassword, this.password)
 }
 
+module.exports = mongoose.model('User', userSchema)
 
-module.exports  = mongoose.model('User', userSchema)
 
