@@ -2,7 +2,7 @@ const User = require('../models/userModel')
 const asyncHandler = require('express-async-handler')
 const {generateToken} = require('../middleware/generateToken')
 
-
+// incomeInfo
 
 // @desc    Register new user
 // @route   POST /api/users
@@ -90,7 +90,7 @@ const userProfile = asyncHandler( async(req, res) => {
     const {_id} = req?.user
     try {
        // Grab user through our protected middleware & get user's expenses & income reports
-    const profile = await User.findById(_id).populate(['expenseInfo', 'incomeInfo'])
+        const profile = await User.findById(_id).populate(['expenses', 'income'])
     res.json(profile)
     } catch (error) {
         res.json(error)

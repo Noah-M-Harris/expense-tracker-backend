@@ -9,8 +9,8 @@ const createExpense = asyncHandler (async (req, res) => {
     // what we are receieving from frontend
     const {title, amount, description} = req.body
     try {
-        // create an instance of epxense
-        const epxense = await Expense.create({
+        // create an instance of expense
+        const expense = await Expense.create({
             title,
             amount,
             description,
@@ -18,8 +18,8 @@ const createExpense = asyncHandler (async (req, res) => {
             user: req?.user?._id
         })   
         
-        // Send back that epxense instance
-        res.json(epxense)
+        // Send back that expense instance
+        res.json(expense)
     } catch (error) {
         res.json(error)
     }

@@ -33,7 +33,7 @@ const userSchema = mongoose.Schema({
 
 
 // Mongoose Virtual Property: Fetching all Expenses made by particular user
-userSchema.virtual('expenseInfo', {
+userSchema.virtual('expenses', {
     ref: 'Expense',
     localField: '_id',
     foreignField: 'user'
@@ -42,7 +42,7 @@ userSchema.virtual('expenseInfo', {
 
 
 // Mongoose Virtual Property: Fetching all Income reports made by particular user
-userSchema.virtual('incomeInfo', {
+userSchema.virtual('income', {
     ref: 'Income',
     localField: '_id',
     foreignField: 'user'
