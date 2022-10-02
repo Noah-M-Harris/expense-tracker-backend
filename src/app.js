@@ -27,9 +27,9 @@ const expenseRouter = require('./routes/expenseRoutes')
 const accountRouter = require('./routes/accountStatRoutes')
 
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
     res.json({message: 'Expense Tracker'})
-})
+}) */
 
 // Routers
 app.use('/v1/users', userRouter)
