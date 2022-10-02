@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const cors = require('cors')
 const dotenv = require('dotenv')
@@ -35,6 +36,15 @@ app.use('/v1/users', userRouter)
 app.use('/v1/income', incomeRouter)
 app.use('/v1/expenses', expenseRouter)
 app.use('/v1/account', accountRouter)
+
+// Serve Frontend
+if(process.env.NODE_ENV == 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')))
+
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'client', 'build', 'index.html')))
+} else {
+    app.get('/', (req, res) => res.send('Please set to production'))
+}
 
 
 // Error Handlers
