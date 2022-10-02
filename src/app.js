@@ -37,6 +37,11 @@ app.use('/v1/income', incomeRouter)
 app.use('/v1/expenses', expenseRouter)
 app.use('/v1/account', accountRouter)
 
+
+// Error Handlers
+app.use(notFound)
+app.use(errorHandler)
+
 // Serve Frontend
 if(process.env.NODE_ENV == 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')))
@@ -45,11 +50,6 @@ if(process.env.NODE_ENV == 'production') {
 } else {
     app.get('/', (req, res) => res.send('Please set to production'))
 }
-
-
-// Error Handlers
-app.use(notFound)
-app.use(errorHandler)
 
 module.exports = app
 
