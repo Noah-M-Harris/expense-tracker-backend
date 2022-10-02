@@ -39,13 +39,22 @@ app.use('/v1/account', accountRouter)
 
 
 // Serve Frontend
-if(process.env.NODE_ENV == 'production') {
+/* if(process.env.NODE_ENV == 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')))
 
     app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'client', 'build', 'index.html')))
 } else {
     app.get('/', (req, res) => res.send('Please set to production'))
+} */
+
+if (process.env.NODE_ENV) {
+    //static folder add
+    app.use(express.static('app/client/build'));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname , "app/client/build", "index.html"));
+    });
 }
+
 
 // Error Handlers
 app.use(notFound)
