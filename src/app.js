@@ -31,6 +31,7 @@ const accountRouter = require('./routes/accountStatRoutes')
     res.json({message: 'Expense Tracker'})
 }) */
 
+
 // Routers
 app.use('/v1/users', userRouter)
 app.use('/v1/income', incomeRouter)
@@ -40,10 +41,10 @@ app.use('/v1/account', accountRouter)
 
 // Serve Frontend
 if(process.env.NODE_ENV == 'production') {
-    app.use(express.static(path.join(__dirname, '../../client/build')))
+    app.use(express.static(path.join(__dirname, '../client/build')))
 
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../', '../', 'client', 'build', 'index.html'))
+        res.sendFile(path.resolve(__dirname, '../', 'client', 'build', 'index.html'))
     })
 } else {
     app.get('/', (req, res) => res.send('Please set to production'))
